@@ -7,12 +7,10 @@
  * @package Redisent
  */
 
-namespace redisent;
-
 /**
  * Wraps native Redis errors in friendlier PHP exceptions
  */
-class RedisException extends \Exception {
+class RedisException extends Exception {
 }
 
 /**
@@ -60,7 +58,7 @@ class Redis {
 		$timeout = $timeout ?: ini_get("default_socket_timeout");
 		$this->__sock = @fsockopen($host, $port, $errno, $errstr, $timeout);
 		if ($this->__sock === FALSE) {
-			throw new \Exception("{$errno} - {$errstr}");
+			throw new Exception("{$errno} - {$errstr}");
 		}
 		if (isset($this->dsn['pass'])) {
 			$this->auth($this->dsn['pass']);
@@ -93,7 +91,7 @@ class Redis {
 			for ($written = 0; $written < strlen($command); $written += $fwrite) {
 				$fwrite = fwrite($this->__sock, substr($command, $written));
 				if ($fwrite === FALSE || $fwrite <= 0) {
-					throw new \Exception('Failed to write entire command to stream');
+					throw new Exception('Failed to write entire command to stream');
 				}
 			}
 		}
@@ -161,7 +159,7 @@ class Redis {
 						$block_size = ($size - $read) > 1024 ? 1024 : ($size - $read);
 						$r = fread($this->__sock, $block_size);
 						if ($r === FALSE) {
-							throw new \Exception('Failed to read response from stream');
+							throw new Exception('Failed to read response from stream');
 						} else {
 							$read += strlen($r);
 							$response .= $r;
