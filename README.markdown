@@ -54,7 +54,7 @@ To add it to your project, simply drop the Redis.php file into your project stru
 
 ```php
 require_once 'redisent/Redis.php';
-$redis = new redisent\Redis('redis://localhost');
+$redis = new Redis('redis://localhost');
 $redis->set('awesome', 'absolutely');
 echo "Is Redisent awesome? ", $redis->get('awesome'), "\n";
 ```
