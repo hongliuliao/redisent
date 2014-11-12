@@ -49,7 +49,7 @@ $redis->pipeline()
 
 ## Quick Start
 
-Redisent has no dependencies aside from requiring PHP versions 5.3 and later.
+Redisent has no dependencies aside from requiring PHP versions 5.2 and later.
 To add it to your project, simply drop the Redis.php file into your project structure, instantiate a Redis instance, and start issuing commands.
 
 ```php
