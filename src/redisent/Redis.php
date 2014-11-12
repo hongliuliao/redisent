@@ -55,7 +55,7 @@ class Redis {
 		$this->dsn = parse_url($dsn);
 		$host = isset($this->dsn['host']) ? $this->dsn['host'] : 'localhost';
 		$port = isset($this->dsn['port']) ? $this->dsn['port'] : 6379;
-		$timeout = $timeout ?: ini_get("default_socket_timeout");
+		$timeout = $timeout ? $timeout : ini_get("default_socket_timeout");
 		$this->__sock = @fsockopen($host, $port, $errno, $errstr, $timeout);
 		if ($this->__sock === FALSE) {
 			throw new Exception("{$errno} - {$errstr}");
